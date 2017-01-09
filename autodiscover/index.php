@@ -1,5 +1,7 @@
 <?php
 
+	libxml_use_internal_errors(true);
+
 	$entityBody = file_get_contents('php://input');
 
 	if(strlen($entityBody) > 0){
