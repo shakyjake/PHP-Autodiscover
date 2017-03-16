@@ -1,5 +1,7 @@
 <?php
 
+	const MAIL_SERVER = 'mail.example.com';
+
 	libxml_use_internal_errors(true);
 
 	$entityBody = file_get_contents('php://input');
@@ -9,8 +11,6 @@
 		$xml = simplexml_load_string($entityBody);
 
 		$Email = $xml->Request->EMailAddress;
-
-		$Stamp = date('m/d/Y h:i:s a', time()) . ' ' . $Email;
 	
 		$sOut = '';
 		
@@ -22,7 +22,7 @@
 		$sOut .= '						<Action>settings</Action>';
 		$sOut .= '						<Protocol>';
 		$sOut .= '								<Type>POP3</Type>';
-		$sOut .= '								<Server>mail.eskdale.net</Server>';
+		$sOut .= '								<Server>' . MAIL_SERVER . '</Server>';
 		$sOut .= '								<Port>995</Port>';
 		$sOut .= '								<LoginName>' . $Email . '</LoginName>';
 		$sOut .= '								<DomainRequired>on</DomainRequired>';
@@ -32,7 +32,7 @@
 		$sOut .= '						</Protocol>';
 		$sOut .= '						<Protocol>';
 		$sOut .= '								<Type>IMAP</Type>';
-		$sOut .= '								<Server>mail.eskdale.net</Server>';
+		$sOut .= '								<Server>' . MAIL_SERVER . '</Server>';
 		$sOut .= '								<Port>993</Port>';
 		$sOut .= '								<LoginName>' . $Email . '</LoginName>';
 		$sOut .= '								<DomainRequired>on</DomainRequired>';
@@ -42,7 +42,7 @@
 		$sOut .= '						</Protocol>';
 		$sOut .= '						<Protocol>';
 		$sOut .= '								<Type>SMTP</Type>';
-		$sOut .= '								<Server>mail.eskdale.net</Server>';
+		$sOut .= '								<Server>' . MAIL_SERVER . '</Server>';
 		$sOut .= '								<Port>587</Port>';
 		$sOut .= '								<LoginName>' . $Email . '</LoginName>';
 		$sOut .= '								<DomainRequired>on</DomainRequired>';
